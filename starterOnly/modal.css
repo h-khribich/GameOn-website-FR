@@ -303,6 +303,8 @@ input[data-error]::after {
   width: 32px;
   height: 32px;
   opacity: 1;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
   transform: scale(0.7);
 }
@@ -310,6 +312,7 @@ input[data-error]::after {
 .close:after {
   position: absolute;
   left: 15px;
+  top: 0;
   content: " ";
   height: 33px;
   width: 3px;
