@@ -127,8 +127,10 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
+.modal-btn:hover,
+.btn-submit:hover {
   background: #3876ac;
+  transition: 0.3s ease-in-out;
 }
 
 .footer {
@@ -451,7 +453,6 @@ input[data-error]::after {
 }
 .btn-signup {
   outline: none;
-  text-transform: capitalize;
   font-size: 1.3rem;
   padding: 15px 23px;
   margin: 0;
