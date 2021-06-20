@@ -41,6 +41,15 @@ function launchModal() {
   });
 });
 
+/*
+  --- Form requierements ---
+*/
+
+//let isFormValid = false;
+/*
+if (array for each ?)all inputs valid,
+then isFormValid = true;
+*/
 
 /*
   --- Validation message event on successful submit ---
@@ -51,39 +60,43 @@ btnSubmit.addEventListener("click", function(event) {
 
   // Sending the form asynchronously 
   /* 
-  !(to be uncommented when needed)!
-  ADD FETCH METHOD POST
+  Put code to send form data somewhere here
   */
+
+  // Validation message 'load' effect
+  setTimeout(validate, 650);
+});
+
+// Validating 
+function validate() {
+  // Positioning validation message
+  modalbg.style.display = ("flex");
+  modalbg.style.alignItems = ("center");
 
   // Form submit animation
   content.animate(
     [ { opacity: '1' },
 
       { opacity: '0', transform: 'translateY(-999px)'}
-    ], 700 );
-
-  // Validation message 'load' effect
-  setTimeout(validate, 700);
-});
-
-// Validation message
-function validate() {
-  // Positioning validation message
-  modalbg.style.display = ("flex");
-  modalbg.style.alignItems = ("center");
-
-  // Similar animation as form element
+    ], 900 );
+  
+  // Validation message
+  function validationMessage() {
+    // Validation message animation
   content.animate(
     [ { opacity: '0', transform: 'translateY(50%)' },
 
       { opacity: '1' }
-    ], 700 );
-  
-  // Styling
-  modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
-  modalBody.style.padding = "2rem 4rem 1rem";
-  modalBody.style.fontSize = "1.2rem";
-  btnGenial.style.display = "block";
-  btnGenial.style.margin = "0.5rem auto 2.5rem";
-  btnGenial.innerText = "Génial !";
+    ], 500 );
+
+    modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
+    modalBody.style.padding = "2rem 4rem 1rem";
+    modalBody.style.fontSize = "1.2rem";
+    btnGenial.style.display = "block";
+    btnGenial.style.margin = "0.5rem auto 2.5rem";
+    btnGenial.innerText = "Génial !";
+  }
+  setTimeout(validationMessage, 900);
 };
+
+// WHEN FORM INVALID RED SENTENCES FLASH
