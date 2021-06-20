@@ -49,29 +49,40 @@ function launchModal() {
 /*
 if (array for each ?)all inputs valid,
 then isFormValid = true;
+
+then
+// Validation 'load' effect
+  //setTimeout(validate, 600);
 */
 
+let isFormValid = true;
+//let isFormValid = modalForm.checkValidity().value;
+
+//Disable submission button if form is invalid
+if (isFormValid === false) {
+  btnSubmit.setAttribute("disabled", "");
+  btnSubmit.style.backgroundColor = "gray";
+}
+
 /*
-  --- Validation message event on successful submit ---
+  --- Validation event on successful submit ---
 */
 btnSubmit.addEventListener("click", function(event) {
   // Prevent form submission with page reload
   event.preventDefault();
 
+  // Validation 'load' effect
+  setTimeout(validate, 600);
+});
+
+
+// Validating form element
+function validate() {
+
   // Sending the form asynchronously 
   /* 
   Put code to send form data somewhere here
   */
-
-  // Validation message 'load' effect
-  setTimeout(validate, 650);
-});
-
-// Validating 
-function validate() {
-  // Positioning validation message
-  modalbg.style.display = ("flex");
-  modalbg.style.alignItems = ("center");
 
   // Form submit animation
   content.animate(
@@ -79,6 +90,10 @@ function validate() {
 
       { opacity: '0', transform: 'translateY(-999px)'}
     ], 900 );
+
+  // Positioning validation message
+  modalbg.style.display = ("flex");
+  modalbg.style.alignItems = ("center");
   
   // Validation message
   function validationMessage() {
@@ -96,7 +111,7 @@ function validate() {
     btnGenial.style.margin = "0.5rem auto 2.5rem";
     btnGenial.innerText = "Génial !";
   }
-  setTimeout(validationMessage, 900);
+  setTimeout(validationMessage, 900); // Give form element time to leave
 };
 
 // WHEN FORM INVALID RED SENTENCES FLASH
