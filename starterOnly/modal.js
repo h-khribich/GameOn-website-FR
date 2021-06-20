@@ -7,7 +7,10 @@ function editNav() {
   }
 }
 
-// DOM Elements
+
+/*
+  --- DOM Elements ---
+*/
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -20,7 +23,9 @@ const btnGenial = content.appendChild(document.createElement("button"));
       btnGenial.style.display = "none"; // Only visible in validation message
       btnGenial.className = "btn-submit";
 
-
+/*
+  --- Modal launch & close ---
+*/
 // Launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -36,9 +41,19 @@ function launchModal() {
   });
 });
 
-// Validation message event on successful submit
+
+/*
+  --- Validation message event on successful submit ---
+*/
 btnSubmit.addEventListener("click", function(event) {
+  // Prevent form submission with page reload
   event.preventDefault();
+
+  // Sending the form asynchronously 
+  /* 
+  !(to be uncommented when needed)!
+  ADD FETCH METHOD POST
+  */
 
   // Form submit animation
   content.animate(
@@ -51,14 +66,13 @@ btnSubmit.addEventListener("click", function(event) {
   setTimeout(validate, 700);
 });
 
-
 // Validation message
 function validate() {
   // Positioning validation message
   modalbg.style.display = ("flex");
   modalbg.style.alignItems = ("center");
 
-  // Similar animation as form
+  // Similar animation as form element
   content.animate(
     [ { opacity: '0', transform: 'translateY(50%)' },
 
