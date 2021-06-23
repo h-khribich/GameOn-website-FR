@@ -30,6 +30,8 @@ const birthdate = document.getElementById("birthdate");
 const tournoi = document.getElementById("quantity");
 const textLabel = document.querySelector(".text-label");
 const tournoiParent = tournoi.parentElement;
+const checkboxTerms = document.getElementById("checkbox1");
+const checkboxLabel = document.querySelector(".checkbox2-label")
 
 /*
   --- MODAL LAUNCH & CLOSE EVENTS ---
@@ -81,9 +83,6 @@ emailInvalid.style.display = "none";
 // Adding invalid input alert to inputs
 birthdateInvalid = document.createElement("p");
 birthdate.after(birthdateInvalid);
-// Prevent user from entering incorrect number values
-birthdate.setAttribute("min", "1900-01-01");
-birthdate.setAttribute("max", "2099-01-01");
 birthdateInvalid.innerText = "Veuilliez saisir une date de naissance valide";
 birthdateInvalid.style.display = "none";
 
@@ -93,6 +92,24 @@ quantityInvalid = document.createElement("p");
 quantity.after(quantityInvalid);
 quantityInvalid.innerText = "Veuilliez choisir un chiffre entre 0 et 99";
 quantityInvalid.style.display = "none";
+
+/*
+// Locations
+// Adding invalid input alert to inputs
+locationsInvalid = document.createElement("p");
+locations.after(locationsInvalid);
+locationsInvalid.innerText = "Veuilliez choisir une ville";
+locationsInvalid.style.display = "none";
+*/
+
+
+// Terms
+// Adding invalid input alert to inputs
+termsInvalid = document.createElement("p");
+checkboxLabel.after(termsInvalid);
+termsInvalid.innerText = "Veuilliez accepter les conditions d'utilisation";
+termsInvalid.style.display = "none";
+
 
 // Styling valid & invalid inputs
 function invalidInput(value) {
@@ -109,7 +126,7 @@ function validInput(value) {
   value.style.border = "none";
 }
 
-//Fixing form styling error
+//Fixing form styling errors
 tournoiParent.style.marginTop = "11px";
 textLabel.style.marginTop = "11px";
 
@@ -124,7 +141,7 @@ firstName.addEventListener("input", function() {
 function validFirstName(name) {
   /* Reg exp names validation (both first and last name have similar requirements)*/
   let regExName = new RegExp(
-    /^[a-zA-Z \-àâçéèêëîïôûùüÿñæœ']{2,}$/,
+    /^[a-zA-Z\-àâçéèêëîïôûùüÿñæœ']{2,}$/,
     'g' // Test all occurences
     );
   let testName = regExName.test(name.value);
@@ -146,7 +163,7 @@ lastName.addEventListener("input", function() {
 function validLastName(name) {
   /* Reg exp names validation (both first and last name have similar requirements)*/
   let regExName = new RegExp(
-    /^[a-zA-Z \-àâçéèêëîïôûùüÿñæœ']{2,}$/,
+    /^[a-zA-Z\-àâçéèêëîïôûùüÿñæœ']{2,}$/,
     'g' 
     );
   let testName = regExName.test(name.value);
@@ -180,16 +197,33 @@ function validEmail(name) {
   }
 }
 
-// Birthday validation event
+// Date of birth validation event
 birthdate.addEventListener("input", function() {
   validBirthdate(this);
 });
 
+// Date of birth - max input is user's "today" date
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; // January is 0 so we need to add 1 to make it 1
+var yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd
+} 
+if (mm < 10) {
+  mm = '0' + mm
+} 
+today = yyyy+'-'+mm+'-'+dd;
+
+// Prevent user from entering incorrect number values
+birthdate.setAttribute("min", "1900-01-01");
+birthdate.setAttribute("max", today);
+
 function validBirthdate(date) {
-  if (!date.checkValidity()) {
-    invalidInput(birthdate);
-  } else {
+  if (date.checkValidity()) {
     validInput(birthdate);
+  } else {
+    invalidInput(birthdate);
   }
 }
 
@@ -199,11 +233,38 @@ quantity.addEventListener("input", function() {
 });
 
 function validQuantity() {
-  if (!quantity.checkValidity()) {
+  if (quantity.checkValidity()) {
+    validInput(quantity);
+    textLabel.style.marginTop = "11px";
+  } else {
     invalidInput(quantity);
     quantity.nextSibling.style.marginBottom = "0";
+    textLabel.style.marginTop = "0";
+  }
+}
+
+// Locations validation function
+
+function validLocations() {
+
+}
+
+
+// Terms & conditions checkbox event
+checkboxTerms.addEventListener("click", function() {
+  validTerms(this);
+});
+
+// Terms & conditions checkbox function
+function validTerms() {
+  if (checkboxTerms.checked) {
+    validInput(checkboxLabel);
   } else {
-    validInput(quantity);
+    invalidInput(checkboxLabel);
+    // Terms & conditions personalised invalid input
+    checkboxLabel.style.border = "none";
+    checkboxLabel.nextSibling.style.textAlign = "left";
+    checkboxLabel.nextSibling.style.padding = "10px 10px 15px";
   }
 }
 
