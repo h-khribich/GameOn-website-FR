@@ -28,6 +28,7 @@ const lastName = document.getElementById("last");
 const formEmail = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const tournoi = document.getElementById("quantity");
+const textLabel = document.querySelector(".text-label");
 const tournoiParent = tournoi.parentElement;
 
 /*
@@ -86,6 +87,13 @@ birthdate.setAttribute("max", "2099-01-01");
 birthdateInvalid.innerText = "Veuilliez saisir une date de naissance valide";
 birthdateInvalid.style.display = "none";
 
+// Quantity
+// Adding invalid input alert to inputs
+quantityInvalid = document.createElement("p");
+quantity.after(quantityInvalid);
+quantityInvalid.innerText = "Veuilliez choisir un chiffre entre 0 et 99";
+quantityInvalid.style.display = "none";
+
 // Styling valid & invalid inputs
 function invalidInput(value) {
   value.style.border = "2px solid #e54858";
@@ -101,8 +109,9 @@ function validInput(value) {
   value.style.border = "none";
 }
 
-//Fixing label styling error
+//Fixing form styling error
 tournoiParent.style.marginTop = "11px";
+textLabel.style.marginTop = "11px";
 
     // Validation events
 
@@ -181,6 +190,20 @@ function validBirthdate(date) {
     invalidInput(birthdate);
   } else {
     validInput(birthdate);
+  }
+}
+
+// Quantity tournoi validation event
+quantity.addEventListener("input", function() {
+  validQuantity();
+});
+
+function validQuantity() {
+  if (!quantity.checkValidity()) {
+    invalidInput(quantity);
+    quantity.nextSibling.style.marginBottom = "0";
+  } else {
+    validInput(quantity);
   }
 }
 
