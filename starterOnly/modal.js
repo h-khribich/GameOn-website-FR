@@ -26,7 +26,9 @@ const btnGenial = content.appendChild(document.createElement("button"));
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const formEmail = document.getElementById("email");
-
+const birthdate = document.getElementById("birthdate");
+const tournoi = document.getElementById("quantity");
+const tournoiParent = tournoi.parentElement;
 
 /*
   --- MODAL LAUNCH & CLOSE EVENTS ---
@@ -74,6 +76,16 @@ formEmail.after(emailInvalid);
 emailInvalid.innerText = "Veuilliez saisir une adresse email valide";
 emailInvalid.style.display = "none";
 
+// Birthdate
+// Adding invalid input alert to inputs
+birthdateInvalid = document.createElement("p");
+birthdate.after(birthdateInvalid);
+// Prevent user from entering incorrect number values
+birthdate.setAttribute("min", "1900-01-01");
+birthdate.setAttribute("max", "2099-01-01");
+birthdateInvalid.innerText = "Veuilliez saisir une date de naissance valide";
+birthdateInvalid.style.display = "none";
+
 // Styling valid & invalid inputs
 function invalidInput(value) {
   value.style.border = "2px solid #e54858";
@@ -89,6 +101,10 @@ function validInput(value) {
   value.style.border = "none";
 }
 
+//Fixing label styling error
+tournoiParent.style.marginTop = "11px";
+
+    // Validation events
 
 // First name validation event
 firstName.addEventListener("input", function() {
@@ -99,7 +115,7 @@ firstName.addEventListener("input", function() {
 function validFirstName(name) {
   /* Reg exp names validation (both first and last name have similar requirements)*/
   let regExName = new RegExp(
-    '^[a-zA-Z]{2,}$', 
+    /^[a-zA-Z \-àâçéèêëîïôûùüÿñæœ']{2,}$/,
     'g' // Test all occurences
     );
   let testName = regExName.test(name.value);
@@ -121,11 +137,11 @@ lastName.addEventListener("input", function() {
 function validLastName(name) {
   /* Reg exp names validation (both first and last name have similar requirements)*/
   let regExName = new RegExp(
-    '^[a-zA-Z]{2,}$', 
+    /^[a-zA-Z \-àâçéèêëîïôûùüÿñæœ']{2,}$/,
     'g' 
     );
   let testName = regExName.test(name.value);
-
+  
   // Personalised input event messages
   if (testName) {
     validInput(lastName); 
@@ -141,7 +157,6 @@ formEmail.addEventListener("input", function() {
 
 // Last name validation function
 function validEmail(name) {
-  /* Reg exp names validation (both first and last name have similar requirements)*/
   let regExName = new RegExp(
     '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 
     'g'
@@ -156,23 +171,31 @@ function validEmail(name) {
   }
 }
 
+// Birthday validation event
+birthdate.addEventListener("input", function() {
+  validBirthdate(this);
+});
 
+function validBirthdate(date) {
+  if (!date.checkValidity()) {
+    invalidInput(birthdate);
+  } else {
+    validInput(birthdate);
+  }
+}
 
-
-
-
-
-
+/*
+  --- SUBMISSION ---
+*/
 
 //Disable submission button if form is invalid
-if (modalForm.checkValidity() === false) {
+if (!modalForm.checkValidity()) {
+  btnSubmit.setAttribute("disabled", "");
   btnSubmit.style.backgroundColor = "gray";
-
-  //Give focus to relevant inputs
-  //modalForm.addEventListener("click", function ()
-  //document.querySelectorAll(':invalid');
-  
+} else {
+  alert("test");
 }
+
 
 /*
   --- Validation event on successful submit ---
@@ -191,7 +214,7 @@ function validate() {
 
   // Sending the form asynchronously 
   /* 
-  Put code to send form data somewhere here
+  Put code here to send form data somewhere
   */
 
   // Form submit animation
