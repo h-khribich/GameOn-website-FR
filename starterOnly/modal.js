@@ -149,6 +149,7 @@ function validFirstName(name) {
     validInput(firstName); 
   } else {
     invalidInput(firstName);
+    firstName.focus();
   }
 }
 
@@ -171,6 +172,7 @@ function validLastName(name) {
     validInput(lastName); 
   } else {
     invalidInput(lastName);
+    lastName.focus();
   }
 }
 
@@ -192,6 +194,7 @@ function validEmail(name) {
     validInput(formEmail); 
   } else {
     invalidInput(formEmail);
+    formEmail.focus();
   }
 }
 
@@ -236,10 +239,16 @@ function validQuantity() {
     textLabel.style.marginTop = "11px";
   } else {
     invalidInput(quantity);
+    quantity.focus();
     quantity.nextSibling.style.marginBottom = "0";
     textLabel.style.marginTop = "0";
   }
 }
+
+// Location validation  event
+locationsInvalid.parentElement.addEventListener("click", function() {
+  isLocationChecked();
+});
 
 // Locations validation function
 function isLocationChecked() {
@@ -261,6 +270,7 @@ function isLocationChecked() {
     locationsInvalid.parentElement.style.borderRadius = "15px";
     locationsInvalid.parentElement.style.padding = "7px";
     locationsInvalid.style.display = "block";
+    locationsInvalid.style.textAlign = "right";
     locationsInvalid.style.color = "#e54858";
     locationsInvalid.style.fontSize = "0.8rem";
   }
@@ -279,9 +289,9 @@ function validTerms() {
     validInput(checkboxLabel);
   } else {
     invalidInput(checkboxLabel);
+    checkboxTerms.focus();
     // Terms & conditions personalised invalid input
     checkboxLabel.style.border = "none";
-    checkboxLabel.nextSibling.style.textAlign = "left";
     checkboxLabel.nextSibling.style.padding = "10px 10px 20px";
   }
 }
@@ -297,12 +307,10 @@ modalForm.addEventListener("input", function () {
   } else {
     btnSubmit.style.backgroundColor = "gray";
   }
-  // Listening for click on "location" checkbox
-  isLocationChecked();
 });
 
 /*
-  --- Validation event on successful submit ---
+  --- Validation event ---
 */
 btnSubmit.addEventListener("click", function(event) {
   // Click animation
@@ -320,7 +328,12 @@ btnSubmit.addEventListener("click", function(event) {
     // Validation 'load' effect
     setTimeout(validate, 600);
   } else {
-
+    // Checking if inputs are valid
+    validFirstName(firstName);
+    validLastName(lastName);
+    validEmail(formEmail);
+    validBirthdate(birthdate);
+    validQuantity();
     isLocationChecked();
     validTerms();
   }
