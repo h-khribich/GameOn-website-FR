@@ -242,6 +242,7 @@ function validQuantity() {
   }
 }
 
+/*
 // Locations validation function
 function validLocations() {
   let checkboxCount = 0;
@@ -265,6 +266,7 @@ function validLocations() {
     }
   }
 }
+*/
 
 // Terms & conditions checkbox event
 checkboxTerms.addEventListener("click", function() {
@@ -303,6 +305,15 @@ modalForm.addEventListener("input", function () {
   --- Validation event on successful submit ---
 */
 btnSubmit.addEventListener("click", function(event) {
+  // Click animation
+  btnSubmit.animate(
+    [ { transform: 'scale(1)' },
+
+      { transform: 'scale(1.05)' },
+
+      { transform: 'scale(1)' }
+    ], 300 );
+
   // Prevent form submission with page reload
   event.preventDefault();
   if (modalForm.checkValidity() === true) {
@@ -350,7 +361,7 @@ function validate() {
     btnGenial.style.margin = "0.5rem auto 2.5rem";
     btnGenial.innerText = "Génial !";
   }
-  setTimeout(validationMessage, 900); // Give form element time to leave
+  setTimeout(validationMessage, 900); // Give form element time to be sent
 };
 
 
