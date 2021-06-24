@@ -19,6 +19,7 @@ const modalForm = document.querySelector(".modal-body > form");
 const modalBody = document.querySelector(".modal-body");
 const content = document.querySelector(".content");
 const btnSubmit = document.querySelector(".modal-body .btn-submit");
+      btnSubmit.style.backgroundColor = "gray"; // Will look disabled as long as form is not valid
 const btnGenial = content.appendChild(document.createElement("button"));
       btnGenial.style.display = "none"; // Only visible in validation message
       btnGenial.className = "btn-submit";
@@ -267,7 +268,9 @@ function validLocations() {
 
 // Terms & conditions checkbox event
 checkboxTerms.addEventListener("click", function() {
-  validTerms(this);
+  if (checkboxTerms.checked) {
+    validInput(checkboxLabel);
+  }
 });
 
 // Terms & conditions checkbox function
@@ -279,7 +282,7 @@ function validTerms() {
     // Terms & conditions personalised invalid input
     checkboxLabel.style.border = "none";
     checkboxLabel.nextSibling.style.textAlign = "left";
-    checkboxLabel.nextSibling.style.padding = "10px 10px 15px";
+    checkboxLabel.nextSibling.style.padding = "10px 10px 20px";
   }
 }
 
@@ -287,14 +290,14 @@ function validTerms() {
   --- SUBMISSION ---
 */
 
-//Disable submission button if form is invalid
-if (!modalForm.checkValidity()) {
-  btnSubmit.setAttribute("disabled", "");
-  btnSubmit.style.backgroundColor = "gray";
-} else {
-  alert("test");
-}
-
+//Make submission button look disabled if form is invalid
+modalForm.addEventListener("input", function () {
+  if (modalForm.checkValidity()) {
+    btnSubmit.style.backgroundColor = "#fe142f";
+  } else {
+    btnSubmit.style.backgroundColor = "gray";
+  }
+});
 
 /*
   --- Validation event on successful submit ---
@@ -305,7 +308,11 @@ btnSubmit.addEventListener("click", function(event) {
   if (modalForm.checkValidity() === true) {
     // Validation 'load' effect
     setTimeout(validate, 600);
-  } 
+  } else {
+
+
+    validTerms();
+  }
 });
 
 // Validating form element
@@ -348,3 +355,5 @@ function validate() {
 
 
 // ADD FAVICON
+
+// !!! BE CAREFUL !!! FORM SUB ANIMATION SKETCHY
