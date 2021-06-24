@@ -97,9 +97,8 @@ quantityInvalid.innerText = "Veuilliez choisir un chiffre entre 0 et 99";
 quantityInvalid.style.display = "none";
 
 // Locations
-locationsInvalid = document.createElement("p");
-locations.nextSibling = locationsInvalid;
-//locations.after(locationsInvalid);
+// Adding invalid input alert to inputs
+locationsInvalid = document.getElementById("location1").parentElement.appendChild(document.createElement("p"));
 locationsInvalid.innerText = "Veuilliez choisir une ville";
 locationsInvalid.style.display = "none";
 
@@ -242,31 +241,30 @@ function validQuantity() {
   }
 }
 
-/*
 // Locations validation function
-function validLocations() {
-  let checkboxCount = 0;
+function isLocationChecked() {
+  let locationChecked = false;
 
-  //Iterate through inputs for "checked" status
+  // Iterating through checkboxes to see if one of them is checked
   for(var i = 0; i < locations.length; i++) {
-    if ([i].checked) {
-      checkboxCount++;
-    }
-
-    //If checkCount is equal to one, at least one checkbox was checked
-    if (checkboxCount > 0) {
-      alert("yes"); //!!!Be careful, alert showed 5 times!!!
-    } else {
-      // Cannot use function invalid input as this element consists of several checkboxes
-      locationsInvalid.style.display = "block";
-      locationsInvalid.style.textAlign = "right";
-      locationsInvalid.style.color = "#e54858";
-      locationsInvalid.style.fontSize = "0.8rem";
-      locationsInvalid.style.marginBottom = "-2.5rem";
+    if (locations[i].checked) {
+      locationChecked = true;
     }
   }
+  // Personalised invalid input message if no checkbox is checked
+  if (locationChecked) {
+    locationsInvalid.style.display = "none";
+    locationsInvalid.parentElement.style.border = "none";
+  } else {
+    // Cannot use function invalid input as this element consists of several checkboxes
+    locationsInvalid.parentElement.style.border = "2px solid #e54858";
+    locationsInvalid.parentElement.style.borderRadius = "15px";
+    locationsInvalid.parentElement.style.padding = "7px";
+    locationsInvalid.style.display = "block";
+    locationsInvalid.style.color = "#e54858";
+    locationsInvalid.style.fontSize = "0.8rem";
+  }
 }
-*/
 
 // Terms & conditions checkbox event
 checkboxTerms.addEventListener("click", function() {
@@ -299,6 +297,8 @@ modalForm.addEventListener("input", function () {
   } else {
     btnSubmit.style.backgroundColor = "gray";
   }
+  // Listening for click on "location" checkbox
+  isLocationChecked();
 });
 
 /*
@@ -321,7 +321,7 @@ btnSubmit.addEventListener("click", function(event) {
     setTimeout(validate, 600);
   } else {
 
-
+    isLocationChecked();
     validTerms();
   }
 });
