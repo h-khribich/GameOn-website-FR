@@ -22,7 +22,7 @@ const btnSubmit = document.querySelector(".modal-body .btn-submit");
 const btnGenial = content.appendChild(document.createElement("button"));
       btnGenial.style.display = "none"; // Only visible in validation message
       btnGenial.className = "btn-submit";
-// Form DOM Elements
+// General Form DOM Elements
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const formEmail = document.getElementById("email");
@@ -32,6 +32,8 @@ const textLabel = document.querySelector(".text-label");
 const tournoiParent = tournoi.parentElement;
 const checkboxTerms = document.getElementById("checkbox1");
 const checkboxLabel = document.querySelector(".checkbox2-label")
+const locations = document.getElementsByName("location"); // Use of plural to declare because "location" is already used by machine
+
 
 /*
   --- MODAL LAUNCH & CLOSE EVENTS ---
@@ -93,15 +95,12 @@ quantity.after(quantityInvalid);
 quantityInvalid.innerText = "Veuilliez choisir un chiffre entre 0 et 99";
 quantityInvalid.style.display = "none";
 
-/*
 // Locations
-// Adding invalid input alert to inputs
 locationsInvalid = document.createElement("p");
-locations.after(locationsInvalid);
+locations.nextSibling = locationsInvalid;
+//locations.after(locationsInvalid);
 locationsInvalid.innerText = "Veuilliez choisir une ville";
 locationsInvalid.style.display = "none";
-*/
-
 
 // Terms
 // Adding invalid input alert to inputs
@@ -109,7 +108,6 @@ termsInvalid = document.createElement("p");
 checkboxLabel.after(termsInvalid);
 termsInvalid.innerText = "Veuilliez accepter les conditions d'utilisation";
 termsInvalid.style.display = "none";
-
 
 // Styling valid & invalid inputs
 function invalidInput(value) {
@@ -244,11 +242,28 @@ function validQuantity() {
 }
 
 // Locations validation function
-
 function validLocations() {
+  let checkboxCount = 0;
 
+  //Iterate through inputs for "checked" status
+  for(var i = 0; i < locations.length; i++) {
+    if ([i].checked) {
+      checkboxCount++;
+    }
+
+    //If checkCount is equal to one, at least one checkbox was checked
+    if (checkboxCount > 0) {
+      alert("yes"); //!!!Be careful, alert showed 5 times!!!
+    } else {
+      // Cannot use function invalid input as this element consists of several checkboxes
+      locationsInvalid.style.display = "block";
+      locationsInvalid.style.textAlign = "right";
+      locationsInvalid.style.color = "#e54858";
+      locationsInvalid.style.fontSize = "0.8rem";
+      locationsInvalid.style.marginBottom = "-2.5rem";
+    }
+  }
 }
-
 
 // Terms & conditions checkbox event
 checkboxTerms.addEventListener("click", function() {
