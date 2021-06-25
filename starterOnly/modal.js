@@ -55,7 +55,7 @@ function launchModal() {
 });
 
 /*
-  --- FORM REQUIREMENTS ---
+  --- FORM INPUTS VALID & INVALID EVENTS ---
 */
 // First name
 
@@ -128,7 +128,10 @@ function validInput(value) {
 tournoiParent.style.marginTop = "11px";
 textLabel.style.marginTop = "11px";
 
-    // Validation events
+
+/*
+  --- VALIDATION EVENTS ---
+*/
 
 // First name validation event
 firstName.addEventListener("input", function() {
@@ -324,6 +327,7 @@ btnSubmit.addEventListener("click", function(event) {
 
   // Prevent form submission with page reload
   event.preventDefault();
+
   if (modalForm.checkValidity() === true) {
     // Validation 'load' effect
     setTimeout(validate, 600);
@@ -339,7 +343,7 @@ btnSubmit.addEventListener("click", function(event) {
   }
 });
 
-// Validating form element
+// Form element valid
 function validate() {
 
   // Sending the form asynchronously 
@@ -357,27 +361,38 @@ function validate() {
   // Positioning validation message
   modalbg.style.display = ("flex");
   modalbg.style.alignItems = ("center");
-  
-  // Validation message
-  function validationMessage() {
-    // Validation message animation
-  content.animate(
-    [ { opacity: '0', transform: 'translateY(50%)' },
+  /*
+    let formSubmitted = false;
 
-      { opacity: '1' }
-    ], 500 );
+    if (formSubmitted === false) {
+          // Validation message
+      function validationMessage() {
+          // Validation message animation
+        content.animate(
+          [ { opacity: '0', transform: 'translateY(50%)' },
 
-    modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
-    modalBody.style.padding = "2rem 4rem 1rem";
-    modalBody.style.fontSize = "1.2rem";
-    btnGenial.style.display = "block";
-    btnGenial.style.margin = "0.5rem auto 2.5rem";
-    btnGenial.innerText = "Génial !";
-  }
+            { opacity: '1' }
+          ], 500 );
+          
+        modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
+        modalBody.style.padding = "2rem 4rem 1rem";
+        modalBody.style.fontSize = "1.2rem";
+        btnGenial.style.display = "block";
+        btnGenial.style.margin = "0.5rem auto 2.5rem";
+        btnGenial.innerText = "Génial !";
+
+        // Form reset on validation message closing
+        btnGenial.addEventListener("click", function() {
+          formSubmitted = true;
+        });
+      }
+    }*/
   setTimeout(validationMessage, 900); // Give form element time to be sent
 };
 
 
+
+// USE BOOLEAN TO CREATE VALIDATION RESET FORM
 // ADD FAVICON
 
-// !!! BE CAREFUL !!! FORM SUB ANIMATION SKETCHY
+
