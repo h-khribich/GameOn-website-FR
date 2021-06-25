@@ -91,7 +91,7 @@ img {
 }
 
 
-
+/* Deleted
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
@@ -100,6 +100,7 @@ img {
     margin-top: -15px;
   }
 } 
+*/
 
 main {
   font-size: 130%;
@@ -425,8 +426,13 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
+  /* Deleted 
   min-width: 424px;
+  */
+  /* Added */
+  width: fit-content;
 }
+
 .hero-content::after {
   content: "";
   width: 100%;
@@ -447,6 +453,8 @@ input[data-error]::after {
 }
 .hero-text {
   width: 146%;
+  /* Added */
+  max-width: 100%;
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
@@ -466,6 +474,8 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  /* Added */
+  object-fit: cover;
 }
 .copyrights {
   color: #fe142f;
@@ -490,7 +500,11 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
+    /* Deleted
     padding: 20px;
+    */
+    /* Added */
+    padding: 0;
   }
   .hero-content::after {
     content: unset;
@@ -499,7 +513,8 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    /* Added */
+    font-size: 3.5rem;
     white-space: normal;
   }
   .hero-text {
@@ -520,6 +535,16 @@ footer {
     text-align: center;
   }
 }
+
+/* Added */
+@media screen and (max-width: 500px) {
+  .hero-content { width: 100%; }
+  .hero-headline { font-size: 2.8rem; }
+  .hero-text { 
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+} 
 
 @keyframes modalopen {
   from {

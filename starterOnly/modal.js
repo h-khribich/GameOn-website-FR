@@ -7,7 +7,6 @@ function editNav() {
   }
 }
 
-
 /*
   --- DOM ELEMENTS ---
 */
@@ -350,56 +349,52 @@ btnSubmit.addEventListener("click", function(event) {
   }
 });
 
-// Form element valid
+  // Form element valid
 function validate() {
 
-  // Sending the form asynchronously 
-  /* 
-  Put code here to send form data somewhere
-  */
+    // Sending the form asynchronously 
+    /* 
+    Put code here to send form data somewhere
+    */
 
-  // Form submit animation
-  content.animate(
-    [ { opacity: '1' },
+    // Form submit animation
+    content.animate(
+      [ { opacity: '1' },
 
-      { opacity: '0', transform: 'translateY(-999px)'}
-    ], 900 );
+        { opacity: '0', transform: 'translateY(-999px)'}
+      ], 900 );
 
-  // Positioning validation message
-  modalbg.style.display = ("flex");
-  modalbg.style.alignItems = ("center");
-  /*
-    let formSubmitted = false;
+    // Positioning validation message
+    modalbg.style.display = ("flex");
+    modalbg.style.alignItems = ("center");
 
-    if (formSubmitted === false) {
-          // Validation message
-      function validationMessage() {
-          // Validation message animation
-        content.animate(
-          [ { opacity: '0', transform: 'translateY(50%)' },
+    // Validation message
+    function validationMessage() {
+      // Validation message animation
+      content.animate(
+        [ { opacity: '0', transform: 'translateY(50%)' },
 
-            { opacity: '1' }
-          ], 500 );
-          
-        modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
-        modalBody.style.padding = "2rem 4rem 1rem";
-        modalBody.style.fontSize = "1.2rem";
-        btnGenial.style.display = "block";
-        btnGenial.style.margin = "0.5rem auto 2.5rem";
-        btnGenial.innerText = "Génial !";
-
-        // Form reset on validation message closing
-        btnGenial.addEventListener("click", function() {
-          formSubmitted = true;
-        });
-      }
-    }*/
-  setTimeout(validationMessage, 900); // Give form element time to be sent
+          { opacity: '1' }
+        ], 500 );
+        
+      modalBody.innerText = "Merci ! Votre réservation a bien été enregistrée.";
+      modalBody.style.padding = "2rem 4rem 1rem";
+      modalBody.style.fontSize = "1.2rem";
+      btnGenial.style.display = "block";
+      btnGenial.style.margin = "0.5rem auto 2.5rem";
+      btnGenial.innerText = "Génial !";
+    }
+    // Give form element time to be sent
+    setTimeout(validationMessage, 900); 
 };
 
 
 
-// USE BOOLEAN TO CREATE VALIDATION RESET FORM
+
+
+
+
+
 // ADD FAVICON
 
 
