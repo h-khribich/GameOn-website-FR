@@ -263,6 +263,7 @@ function isLocationChecked() {
       locationChecked = true;
     }
   }
+
   // Personalised invalid input message if no checkbox is checked
   if (locationChecked) {
     locationsInvalid.style.display = "none";
@@ -309,6 +310,12 @@ modalForm.addEventListener("input", function () {
     btnSubmit.style.backgroundColor = "#fe142f";
   } else {
     btnSubmit.style.backgroundColor = "gray";
+  }
+
+  // Cannot use required attributes for a group of checkboxes so we implement it manually
+  let locationChecked = false;
+  if(locationChecked === false) {
+    document.getElementById("location1").setAttribute("required", "");
   }
 });
 
