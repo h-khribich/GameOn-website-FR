@@ -435,9 +435,8 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  /* Deleted 
   min-width: 424px;
-  */
+  
 }
 
 .hero-content::after {
@@ -446,7 +445,7 @@ input[data-error]::after {
   height: 100%;
   background: #232323;
   position: absolute;
-  right: -100px;
+  right: -80px;
   top: 0;
 }
 .hero-content > * {
@@ -499,7 +498,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 830px) {
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -550,11 +549,20 @@ footer {
 
 /* Added */
 @media screen and (max-width: 500px) {
-  .hero-content { width: 100%; }
-  .hero-headline { font-size: 2.8rem; }
+  .hero-content { 
+    width: 100%;
+    min-width: 100px;
+  }
+  .hero-headline { 
+    font-size: 2.8rem;
+    white-space: normal;
+    max-width: 100%;
+  }
   .hero-text { 
     font-size: 1.2rem;
     margin-top: 30px;
+    white-space: normal;
+    max-width: 100%;
   }
 }
 
