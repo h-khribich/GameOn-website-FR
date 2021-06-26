@@ -318,7 +318,6 @@ modalForm.addEventListener("input", function () {
   }
 });
 
-console.log(document.getElementById("location1"));
 /*
   --- Validation event ---
 */

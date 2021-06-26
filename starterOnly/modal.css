@@ -544,6 +544,11 @@ footer {
 }
 
 /* Added */
+@media screen and (max-width: 970px) {
+  .hero-headline { font-size: 4.8rem; }
+} 
+
+/* Added */
 @media screen and (max-width: 500px) {
   .hero-content { width: 100%; }
   .hero-headline { font-size: 2.8rem; }
@@ -551,6 +556,11 @@ footer {
     font-size: 1.2rem;
     margin-top: 30px;
   }
+}
+
+/* Added */
+@media screen and (max-width: 426px) {
+  .hero-headline { font-size: 2.5rem; }
 } 
 
 /* Added */
