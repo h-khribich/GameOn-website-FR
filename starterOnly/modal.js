@@ -311,13 +311,14 @@ modalForm.addEventListener("input", function () {
     btnSubmit.style.backgroundColor = "gray";
   }
 
-  // Cannot use required attributes for a group of checkboxes so we implement it manually
+  /* Cannot use 'required' attributes for a group of checkboxes so we implement it manually: if no checkboxes are checked, a random checkbox is given the 'required' attribute in order to make the form invalid */
   let locationChecked = false;
   if(locationChecked === false) {
     document.getElementById("location1").setAttribute("required", "");
   }
 });
 
+console.log(document.getElementById("location1"));
 /*
   --- Validation event ---
 */
